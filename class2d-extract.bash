@@ -6,7 +6,7 @@ JOB_FOLDER=$(find ./Class2D -type d -iname "job01*" |head -n1 |rev| cut --charac
 # Create a copy of the job template script and name it after the job
 cp blank-template.bash $JOB_FOLDER-template.bash
 # Extract command and insert into template
-JOB_COMMAND=$(grep --color=never -i relion $(find ./Class2D -type d -iname "job01*" |head -n1)/note.txt)
+JOB_COMMAND=$(grep --color=never -i relion $(find ./Class2D -type d -iname "job01?" |head -n1)/note.txt)
 sed -i "s~REPLACECOMMAND~mpirun $JOB_COMMAND \&~g" $JOB_FOLDER-template.bash
 # Check job template script/run creates folders in the correct location
 sed -i "s~REPLACEFOLDER~Class2D/$JOB_FOLDER~g" $JOB_FOLDER-template.bash
