@@ -1,7 +1,17 @@
 #!/bin/bash
 # Script to take output files and extract information
 # Parameter 1 = Slurm JOBID
+JOBID=$1
+ANALYSISFOLDER=loganalysis/$JOBID
+# Make a single directory for all files for a job
+mkdir -p $ANALYSISFOLDER
 
-# Find environment logs for slurm JOBID
-grep -l "JOBID=$1" *.log
+# Move job logs to folder
+mv $JOBID.* $ANALYSISFOLDER/ 
+# Move performance logs to folder
 
+
+# Find environment logs for slurm JOBID and move all files
+grep -l "JOBID=$JOBID" *.log
+FILEDATES=`grep -l "JOBID=$JOBID" *.log | cut -d'-' -f2 | cut -d'.' -f1`
+for DATE in $FILEDATES; do mv -v *-$DATE.log $ANALYSISFOLDER/ ;done
