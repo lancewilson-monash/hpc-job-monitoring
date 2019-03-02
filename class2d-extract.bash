@@ -1,8 +1,8 @@
 #!/bin/bash
-# Script to extract Class3D job 
+# Script to extract Class2D job 
 
-# Find Class3D jobs and extract command
-JOB_FOLDER=$(find ./Class2D -type d -iname "job01*" |head -n1 |rev| cut --characters=1-6 |rev)
+# Find Class2D jobs and extract command
+JOB_FOLDER=$(find ./Class2D -type d -iname "job01?" |head -n1 |rev| cut --characters=1-6 |rev)
 # Create a copy of the job template script and name it after the job
 cp blank-template.bash $JOB_FOLDER-template.bash
 # Extract command and insert into template

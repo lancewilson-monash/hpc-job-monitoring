@@ -2,7 +2,7 @@
 # Script to extract Class3D job 
 
 # Find Class3D jobs and extract command
-JOB_FOLDER=$(find ./Class3D -type d -iname "job*" |head -n1 |rev| cut --characters=1-6 |rev)
+JOB_FOLDER=$(find ./Class3D -type d -iname "job???" |head -n1 |rev| cut --characters=1-6 |rev)
 # Create a copy of the job template script and name it after the job
 cp blank-template.bash $JOB_FOLDER-template.bash
 # Extract command and insert into template
@@ -14,7 +14,5 @@ sed -i 's~/run ~-$LOGDATE/run ~g' $JOB_FOLDER-template.bash
 # Remove gpu assignation if they exist
 sed -i 's~--gpu "[0-9:]*"~--gpu ""~g' $JOB_FOLDER-template.bash
 # Remove any thread settings
-sed -i 's~--j [0-9].~--j 1~g' $JOB_FOLDER-template.bash
-# Append job command to job logs
-echo "echo $JOB_COMMAND" >>$JOB_FOLDER-template.bash
+sed -i 's~--j [0-9].~--j 1 ~g' $JOB_FOLDER-template.bash
 

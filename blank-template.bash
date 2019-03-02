@@ -69,6 +69,7 @@ outputcputime &
 wait $PID1
 # Kill all remaining processes after initial one is complete
 pkill -P $$
+printf 'REPLACECOMMAND \n'
 echo Job Complete
 
 
